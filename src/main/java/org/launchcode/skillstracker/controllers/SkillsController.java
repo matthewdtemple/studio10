@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 public class SkillsController {
 
 //@GetMapping()
-    @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
-    public String welcomeInfo(@RequestParam String name, String firstLang,String secLang, String thirdLang){
+    @GetMapping()
+    public String welcomeInfo(){
         String withoutData =
                 "<html>" +
                 "<h1> Skills Tracker </h1>" +
@@ -22,23 +22,24 @@ public class SkillsController {
                 "</ol>" +
                 "<a href='/form'>Form</a>" +
                 "</html>";
-        String withData =
-                "<html>" +
-                "<h1>" + name + "'s fav programs! </h1>" +
-                "<h2> Here's the list! </h2>" +
-                "<ol>" +
-                "<li>"+ firstLang + " </li>" +
-                "<li>"+ secLang + "</li>" +
-                "<li>"+ thirdLang + "</li>" +
-                "</ol>" +
-                "<a href='/form'>Form</a>" +
-                "</html>";
+        return withoutData;
+    }
 
-        if (name != null || firstLang != null || secLang != null || thirdLang != null){
-            return withoutData;
-        } else {
-            return withData;
-        }
+    @PostMapping()
+    public String formInfoIndex(@RequestParam String name, String firstLang,String secLang, String thirdLang){
+        String html=
+                "<html>" +
+                        "<h1>" + name + "'s fav programs! </h1>" +
+                        "<h2> Here's the list! </h2>" +
+                        "<ol>" +
+                        "<li>"+ firstLang + " </li>" +
+                        "<li>"+ secLang + "</li>" +
+                        "<li>"+ thirdLang + "</li>" +
+                        "</ol>" +
+                        "<a href='/form'>Form</a>" +
+                        "</html>";
+
+        return html;
     }
 
     @GetMapping("form")
@@ -92,6 +93,23 @@ public class SkillsController {
                 "<a href='/'>Home</a>" +
                 "</html>";
     }
+
+//    @PostMapping("form")
+//    public String withDataForm(@RequestParam String name, String firstLang,String secLang, String thirdLang){
+//       String html=
+//                "<html>" +
+//                "<h1>" + name + "'s fav programs! </h1>" +
+//                "<h2> Here's the list! </h2>" +
+//                "<ol>" +
+//                "<li>"+ firstLang + " </li>" +
+//                "<li>"+ secLang + "</li>" +
+//                "<li>"+ thirdLang + "</li>" +
+//                "</ol>" +
+//                "<a href='/form'>Form</a>" +
+//                "</html>";
+//
+//       return html;
+//    }
 
 
 
